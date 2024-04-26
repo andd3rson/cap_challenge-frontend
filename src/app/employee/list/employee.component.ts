@@ -11,11 +11,11 @@ import { Observable } from 'rxjs';
 export class EmployeeComponent implements OnInit {
 
   $employee: Observable<Employee[]>;
-  
+
   constructor(private employeeServices: EmployeeServices) {
 
     this.$employee = this.employeeServices.getAll();
-    
+
   }
 
   ngOnInit(): void {

@@ -2,18 +2,24 @@
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Name </th>
+      <th scope="col">Name</th>
       <th scope="col">Department</th>
+      <th scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let employee of $employee | async">
       <th scope="row">{{ employee.id }}</th>
+      <td>{{ employee.firstName }} {{ employee.lastName }}</td>
       <td>
-        {{ employee.firstName }} {{ employee.lastName }}
+        {{ employee.department.name }}
       </td>
       <td>
-        {{ employee.department }}
+        <div class="d-flex justify-content-around" role="group">
+          <button type="button" class="btn btn-outline-primary">Edit</button>
+          <button type="button" class="btn btn-outline-info">Info</button>
+          <button type="button" class="btn btn-outline-danger">Delete</button>
+        </div>
       </td>
     </tr>
   </tbody>
