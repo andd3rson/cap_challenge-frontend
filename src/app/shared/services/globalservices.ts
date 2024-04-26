@@ -14,7 +14,6 @@ export abstract class GlobalService<T> {
     }
 
     getAll(): Observable<T[]> {
-        console.log(this.url);
         
         return this.http.get<T[]>(this.url);
     }
@@ -23,6 +22,8 @@ export abstract class GlobalService<T> {
     }
     create(resource: T): Observable<T> {
         console.log(resource);
+        console.log(this.url);
+        
         
         return this.http.post<T>(`${this.url}`, resource, opt)
     }

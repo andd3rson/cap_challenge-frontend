@@ -20,7 +20,6 @@ export class CreateEmployeeComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private employeeServices: EmployeeServices
   ) {
-
     this.departments$ = this.employeeServices.getDepartment();
   }
 
