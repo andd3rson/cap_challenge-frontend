@@ -3,17 +3,19 @@ import { CommonModule } from '@angular/common';
 
 import { EmployeeRoutingModule } from './employee-routing.module';
 import { EmployeeComponent } from './list/employee.component';
-import { CreateComponent } from './create/create.component';
+import { CreateEmployeeComponent } from './create/create.employee.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     EmployeeComponent,
-    CreateComponent
+    CreateEmployeeComponent
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     HttpClientModule,
     EmployeeRoutingModule
   ], 

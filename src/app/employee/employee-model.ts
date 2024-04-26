@@ -1,11 +1,17 @@
+
 export interface Employee {
-    id: Number;
+    id?: Number;
     firstName: String;
     lastName: String;
-    department: Department
+    email: String;
+    salary: Number;
+    birthDate: Date;
+    departmentId?: Number;
+    department?: Department;
 
 }
-interface Department {
+
+export interface Department {
     id: Number;
     name: String;
 } 

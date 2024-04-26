@@ -6,7 +6,7 @@ var opt = { headers: new HttpHeaders({ "content-type": "application/json" }) }
 
 export abstract class GlobalService<T> {
 
-    private readonly url = `${environment.url}`;
+    protected readonly url = `${environment.url}`;
     constructor(
         protected http: HttpClient, path: String
     ) {
@@ -20,6 +20,8 @@ export abstract class GlobalService<T> {
         return this.http.get<T>(`${this.url}/${id}`)
     }
     create(resource: T): Observable<T> {
+        console.log(resource);
+        
         return this.http.post<T>(`${this.url}`, resource, opt)
     }
     update(resource: T, id: Number): Observable<T> {
