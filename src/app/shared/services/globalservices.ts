@@ -14,6 +14,8 @@ export abstract class GlobalService<T> {
     }
 
     getAll(): Observable<T[]> {
+        console.log(this.url);
+        
         return this.http.get<T[]>(this.url);
     }
     getById(id: Number): Observable<T> {

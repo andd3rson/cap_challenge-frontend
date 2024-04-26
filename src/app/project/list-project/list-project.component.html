@@ -1,0 +1,36 @@
+<div class="row d-flex justify-content-end" style="height: 10vh">
+  <button
+    type="button"
+    class="btn btn-outline-success m-4"
+    routerLink="new"
+  >Create</button>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Project Name</th>
+        <th scope="col">Manager Mame</th>
+        <th scope="col" class="text-center">Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let project of projects$">
+        <td>{{ project.name }}</td>
+        <td>{{ project.managerName }}</td>
+        <td class="text-center">{{ project.details }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="d-flex justify-content-between p-2">
+    <ngb-pagination
+      [collectionSize]="collectionSize"
+      [(page)]="page"
+      [pageSize]="pageSize"
+      (pageChange)="refreshProjects()"
+    >
+    </ngb-pagination>
+  </div>
+</div>
