@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { EmployeeRoutingModule } from './employee-routing.module';
-import { EmployeeComponent } from './employee.component';
+import { EmployeeComponent } from './list/employee.component';
+import { CreateComponent } from './create/create.component';
 
 
 @NgModule({
   declarations: [
-    EmployeeComponent
+    EmployeeComponent,
+    CreateComponent
   ],
   imports: [
     CommonModule,
