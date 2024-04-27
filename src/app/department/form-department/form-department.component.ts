@@ -1,24 +1,25 @@
-import { Project } from './../project-model';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ProjectService } from '../project.service';
+
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from "rxjs/operators"
+
+import { DepartmentServices } from '../department.service';
+import { Department } from '../department-model';
 import { Location } from '@angular/common';
 @Component({
-  selector: 'app-form-project',
-  templateUrl: './form-project.component.html',
-  styleUrls: ['./form-project.component.scss']
+  selector: 'app-form-department',
+  templateUrl: './form-department.component.html'
 })
-export class FormProjectComponent implements OnInit {
+export class FormDepartmentComponent implements OnInit {
 
   currentAction: String = "";
   form!: FormGroup;
-  project!: Project
+  department!: Department
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private projectServices: ProjectService,
+    private departmentServices: DepartmentServices,
     private location: Location
   ) { }
 
@@ -41,33 +42,31 @@ export class FormProjectComponent implements OnInit {
   buildForm() {
     this.form = this.formBuilder.group(
       {
-        name: ["",
-          [Validators.required, Validators.maxLength(20)]],
-        details: ["",
-          [Validators.required, Validators.maxLength(50)]],
-        managerName: ["",
-          [Validators.required]]
+        name: ["", [Validators.required, Validators.maxLength(50)]],
       })
 
   }
 
   loadIfEdit() {
+
+
     if (this.currentAction == "edit") {
       this.route.paramMap.pipe(
-        switchMap(p => this.projectServices.getById(Number(p.get("id"))))
+        switchMap(p => this.departmentServices.getById(Number(p.get("id"))))
       ).subscribe(
-        project => {
-          this.project = project;
-          this.form.patchValue(this.project)
+        department => {
+          console.log(department);
+
+          this.department = department;
+          this.form.patchValue(this.department)
         }
       )
     }
   }
 
   private setCurrentAction() {
-    console.log(this.route.snapshot.url[0].path);
-    if (this.route.snapshot.url[0].path == "new") {
 
+    if (this.route.snapshot.url[0].path == "new") {
       this.currentAction = "new"
     } else {
       this.currentAction = "edit"
@@ -75,9 +74,10 @@ export class FormProjectComponent implements OnInit {
   }
 
   onCreate() {
-    this.projectServices.create(this.form.value)
+    this.departmentServices.create(this.form.value)
       .subscribe(
         success => {
+          this.previewsPage();
           console.log(success);
         },
         error => console.log(error)
@@ -85,19 +85,18 @@ export class FormProjectComponent implements OnInit {
   }
 
   onUpdate() {
-    this.project = Object.assign(this.project, this.form.value)
-    console.log(this.project);
+    this.department = Object.assign(this.department, this.form.value)
 
-    this.projectServices
-      .update(this.project, Number(this.project!.id))
+    this.departmentServices
+      .update(this.department, Number(this.department!.id))
       .subscribe(
         success => {
+          this.previewsPage();
           console.log(success);
         },
         error => console.log(error)
       )
   }
-
 
   previewsPage() {
     this.location.back()

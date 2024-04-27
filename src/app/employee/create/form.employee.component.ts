@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { Department } from '../employee-model';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-create',
@@ -23,6 +24,7 @@ export class FormEmployeeComponent implements OnInit {
     private formBuilder: FormBuilder,
     private employeeServices: EmployeeServices,
     private route: ActivatedRoute,
+    private location: Location
 
   ) {
     this.departments$ = this.employeeServices.getDepartment();
@@ -109,6 +111,10 @@ export class FormEmployeeComponent implements OnInit {
         }
       )
     }
+  }
+
+  previewsPage() {
+    this.location.back()
   }
 
   private setCurrentAction() {
