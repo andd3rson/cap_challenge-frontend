@@ -1,3 +1,5 @@
+<!-- TODO: ADD FONT ICON INSTEAD OF SVG -->
+
 <div class="row d-flex justify-content-end" style="height: 10vh">
   <button type="button" class="btn btn-outline-success m-4" routerLink="new">
     <svg
@@ -18,6 +20,16 @@
   </button>
 </div>
 
+<div class="form-group form-inline d-flex justify-content-center">
+  <input
+    class="form-control w-75"
+    type="text"
+    name="searchTerm"
+    [(ngModel)]="search"
+  />
+  <button class="btn btn-primary" (click)="refreshEmployee()">Search</button>
+</div>
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -28,7 +40,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let employee of $employee | async">
+    <tr *ngFor="let employee of $employee">
       <th scope="row">{{ employee.id }}</th>
       <td>{{ employee.firstName }} {{ employee.lastName }}</td>
       <td>
@@ -66,6 +78,28 @@
     </tr>
   </tbody>
 </table>
+
+<div class="d-flex justify-content-between p-2">
+  <ngb-pagination
+    [collectionSize]="totalPage"
+    [(page)]="page"
+    [pageSize]="pageSize"
+    (pageChange)="nextPage()"
+  >
+  </ngb-pagination>
+
+  <select
+    class="custom-select"
+    style="width: auto"
+    name="pageSize"
+    (change)="itemPerPage()"
+    [(ngModel)]="pageSize"
+  >
+    <option [ngValue]="3">3 items per page</option>
+    <option [ngValue]="5">5 items per page</option>
+    <option [ngValue]="7">7 items per page</option>
+  </select>
+</div>
 
 <ng-template #content let-modal>
   <div class="modal-header">

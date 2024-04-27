@@ -5,8 +5,9 @@ import { EmployeeRoutingModule } from './employee-routing.module';
 import { EmployeeComponent } from './list/employee.component';
 
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormEmployeeComponent } from './create/form.employee.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -18,7 +19,9 @@ import { FormEmployeeComponent } from './create/form.employee.component';
     CommonModule,
     ReactiveFormsModule,
     HttpClientModule,
-    EmployeeRoutingModule
+    EmployeeRoutingModule,
+    FormsModule,
+    NgbModule
   ], 
   providers:[HttpClientModule]
 })

@@ -47,7 +47,7 @@ export class FormEmployeeComponent implements OnInit {
           [Validators.required, Validators.maxLength(50)]],
         email: ["",
           [Validators.email]],
-        birthDate: ["",
+        birthDate: [null,
           [Validators.required]],
         salary: [null,
           [Validators.required]],
