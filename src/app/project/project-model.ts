@@ -4,8 +4,3 @@ export interface Project {
     details: String;
     managerName: String;
 }
-// {
-//     "name": "string",
-//     "details": "string",
-//     "managerName": "string"
-//   }

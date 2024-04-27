@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ListProjectComponent } from './list-project/list-project.component';
-import { CreateProjectComponent } from './create-project/create-project.component';
+import { FormProjectComponent } from './form-project/form-project.component';
+
 
 const routes: Routes = [
   {
@@ -10,7 +11,11 @@ const routes: Routes = [
   },
   {
     path: "new",
-    component: CreateProjectComponent
+    component: FormProjectComponent
+  },
+  {
+    path: ":id/edit",
+    component: FormProjectComponent
   }
 ];
 
