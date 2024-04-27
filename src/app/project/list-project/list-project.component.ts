@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from '../project.service';
 import { Project } from '../project-model';
-import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-list-project',
