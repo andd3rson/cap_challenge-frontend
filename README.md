@@ -1,6 +1,6 @@
 # EmployeeManagement
 
-This project was generated in 12.2.18 version.
+This project was generated using angular v12.2.18, node v14.15.0.
 
 ## Development server
 
