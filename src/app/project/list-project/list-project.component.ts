@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from '../project.service';
 import { Project } from '../project-model';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-list-project',
@@ -14,8 +15,9 @@ export class ListProjectComponent implements OnInit {
   collectionSize = 0;
   projects$!: Project[];
   paginatedProject!: Project[];
+  itemToBeDeleted!: String;
 
-  constructor(private projectServices: ProjectService) {
+  constructor(private projectServices: ProjectService, private modalService: NgbModal) {
 
     this.projectServices.getAll().subscribe(p => {
       this.collectionSize = p.length;
@@ -31,6 +33,20 @@ export class ListProjectComponent implements OnInit {
   refreshProjects() {
     this.projects$ = this.paginatedProject.slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
+
+  open(content: any, item: Project) {
+    this.itemToBeDeleted = item.name;
+
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+      if (result) {
+        this.projectServices.remove(Number(item!.id))
+      }
+    }, (reason) => {
+      console.log(reason);
+
+    });
+  }
+
 
 }
 
