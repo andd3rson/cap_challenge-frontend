@@ -19,16 +19,21 @@ export class ListProjectComponent implements OnInit {
 
   constructor(private projectServices: ProjectService, private modalService: NgbModal) {
 
+  }
+
+  ngOnInit(): void {
+    this.loadProject();
+
+  }
+
+
+  loadProject() {
     this.projectServices.getAll().subscribe(p => {
       this.collectionSize = p.length;
       this.paginatedProject = p;
       this.refreshProjects();
     });
   }
-
-  ngOnInit(): void {
-  }
-
 
   refreshProjects() {
     this.projects$ = this.paginatedProject.slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
@@ -40,13 +45,17 @@ export class ListProjectComponent implements OnInit {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       if (result) {
         this.projectServices.remove(Number(item!.id)).subscribe(
-          success => this.refreshProjects()
+          success => this.loadProject()
         )
       }
     }, (reason) => {
       console.log(reason);
 
-    });
+    }).then(
+      then => {
+        this.refreshProjects();
+      }
+    );
   }
 
 
