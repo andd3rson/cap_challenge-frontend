@@ -1,9 +1,5 @@
 <div class="row d-flex justify-content-end" style="height: 10vh">
-  <button 
-  type="button" 
-  class="btn btn-outline-success m-4"
-  routerLink="new"
-  >
+  <button type="button" class="btn btn-outline-success m-4" routerLink="new">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="16"
@@ -40,7 +36,11 @@
       </td>
       <td>
         <div role="group">
-          <button type="button" class="btn btn-outline-primary border-0">
+          <button
+            type="button"
+            class="btn btn-outline-primary border-0"
+            [routerLink]="[employee.id, 'edit']"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -54,8 +54,40 @@
               />
             </svg>
           </button>
+          <button
+            type="button"
+            class="btn btn-outline-danger border-0"
+            (click)="open(content, employee)"
+          >
+            X
+          </button>
         </div>
       </td>
     </tr>
   </tbody>
 </table>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="modal-basic-title">
+      Are you sure about delete this employee "{{ itemToBeDeleted }}" ??
+    </h5>
+  </div>
+
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-primary"
+      (click)="modal.close(true)"
+    >
+      Yes
+    </button>
+    <button
+      type="button"
+      class="btn btn-outline-danger"
+      (click)="modal.close(false)"
+    >
+      No
+    </button>
+  </div>
+</ng-template>

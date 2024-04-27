@@ -39,7 +39,9 @@ export class ListProjectComponent implements OnInit {
 
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       if (result) {
-        this.projectServices.remove(Number(item!.id))
+        this.projectServices.remove(Number(item!.id)).subscribe(
+          success => this.refreshProjects()
+        )
       }
     }, (reason) => {
       console.log(reason);

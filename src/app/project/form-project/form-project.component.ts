@@ -30,8 +30,6 @@ export class FormProjectComponent implements OnInit {
       if (this.currentAction == 'new') {
         this.onCreate();
       } else {
-        console.log('hit here');
-
         this.onUpdate();
       }
 

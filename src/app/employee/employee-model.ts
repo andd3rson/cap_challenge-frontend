@@ -5,13 +5,16 @@ export interface Employee {
     lastName: String;
     email: String;
     salary: Number;
-    birthDate: Date;
-    departmentId?: Number;
-    department?: Department;
+    birthDate: String;
+    department: Department | null;
+    departmentId?: Number
 
 }
 
-export interface Department {
-    id: Number;
-    name: String;
+export class Department {
+
+    constructor(public id: Number, public name: String) {
+
+    }
+
 } 

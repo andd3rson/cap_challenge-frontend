@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EmployeeComponent } from './list/employee.component';
-import { CreateEmployeeComponent } from './create/create.employee.component';
+import { FormEmployeeComponent } from './create/form.employee.component';
+
 
 const routes: Routes = [
   {
@@ -10,7 +11,11 @@ const routes: Routes = [
   },
   {
     path: 'new',
-    component: CreateEmployeeComponent
+    component: FormEmployeeComponent
+  },
+  {
+    path: ':id/edit',
+    component: FormEmployeeComponent
   }
 ];
 
