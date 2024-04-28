@@ -9,6 +9,7 @@ import { CreateToFormButtonComponent } from './components/create-to-form-button/
 import { HttpClientModule } from '@angular/common/http';
 
 import { RouterModule } from '@angular/router';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -21,18 +22,17 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   exports: [
     NgbModule,
-
     // shared modules
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-
 
     // shared components
     ErrorValidatorComponent,
