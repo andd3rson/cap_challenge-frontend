@@ -1,14 +1,7 @@
 
 
-<div class="row d-flex justify-content-start" style="height: 10vh">
-  <button
-    type="button"
-    class="btn btn-outline-dark m-4 border-0"
-    (click)="previewsPage()"
-  >
-  <i class="fa fa-arrow-left" aria-hidden="true"></i>
-  </button>
-</div>
+<app-previous-button></app-previous-button>
+
 
 <div class="mt-5">
   <form [formGroup]="form" class="row g-3">
@@ -20,7 +13,7 @@
         id="firstName"
         formControlName="firstName"
       />
-      <app-error-validator [form-control]="form.get('name')"></app-error-validator>
+      <app-error-validator [form-control]="form.get('firstName')"></app-error-validator>
     </div>
 
     <div class="col-md-6">
@@ -30,19 +23,19 @@
         class="form-control"
         id="lastName"
         formControlName="lastName"
-      />
-      <app-error-validator [form-control]="form.get('name')"></app-error-validator>
+        />
+        <app-error-validator [form-control]="form.get('lastName')"></app-error-validator>
     </div>
     <div class="col-md-2">
       <label for="birthDate" class="form-label">Birthdate</label>
       <input
-        type="date"
-        class="form-control"
-        placeholder="dd/mm/yyyy"
-        name="d2"
-        formControlName="birthDate"
+      type="date"
+      class="form-control"
+      placeholder="dd/mm/yyyy"
+      name="d2"
+      formControlName="birthDate"
       />
-      <app-error-validator [form-control]="form.get('name')"></app-error-validator>
+      <app-error-validator [form-control]="form.get('birthDate')"></app-error-validator>
     </div>
 
     <div class="col-md-6">
@@ -53,7 +46,7 @@
         id="email"
         formControlName="email"
       />
-      <app-error-validator [form-control]="form.get('name')"></app-error-validator>
+      <app-error-validator [form-control]="form.get('email')"></app-error-validator>
     </div>
 
     <div class="col-md-3">
@@ -64,7 +57,7 @@
         id="salary"
         formControlName="salary"
       />
-      <app-error-validator [form-control]="form.get('name')"></app-error-validator>
+      <app-error-validator [form-control]="form.get('salary')"></app-error-validator>
     </div>
 
     <div class="col-md-3">
@@ -74,7 +67,6 @@
           {{ item.name }}
         </option>
       </select>
-      <app-error-validator [form-control]="form.get('name')"></app-error-validator>
     </div>
 
     <div class="col-12">

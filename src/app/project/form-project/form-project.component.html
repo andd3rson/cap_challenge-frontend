@@ -1,12 +1,5 @@
-<div class="row d-flex justify-content-start" style="height: 10vh">
-  <button
-    type="button"
-    class="btn btn-outline-dark m-4 border-0"
-    (click)="previewsPage()"
-  >
-    <i class="fa fa-arrow-left" aria-hidden="true"></i>
-  </button>
-</div>
+<app-previous-button></app-previous-button>
+
 
 <div class="mt-5">
   <form [formGroup]="form" class="row g-3">
@@ -29,7 +22,7 @@
         id="managerName"
         formControlName="managerName"
       />
-      <app-error-validator [form-control]="form.get('name')"></app-error-validator>
+      <app-error-validator [form-control]="form.get('managerName')"></app-error-validator>
     </div>
     <div class="col-md-6">
       <label for="employees" class="form-label">Employees</label>
@@ -43,7 +36,6 @@
         formControlName="employeesId"
       >
       </ng-select>
-      <app-error-validator [form-control]="form.get('name')"></app-error-validator>
     </div>
     <div class="col-md-12">
       <label for="details" class="form-label">Details</label>
@@ -54,7 +46,7 @@
         formControlName="details"
       >
       </textarea>
-      <app-error-validator [form-control]="form.get('name')"></app-error-validator>
+      <app-error-validator [form-control]="form.get('details')"></app-error-validator>
     </div>
     <div class="col-12">
       <div class="d-flex justify-content-end p-1">

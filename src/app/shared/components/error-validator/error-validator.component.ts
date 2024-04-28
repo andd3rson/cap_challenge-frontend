@@ -18,22 +18,18 @@ export class ErrorValidatorComponent implements OnInit {
   }
 
   public get errorMessage() {
-   
-    console.log(this.formControl);
-
-    
     if (this.showMessageIfHasAnyError()) {
       return this.getMessage();
     }
     return null;
   }
   showMessageIfHasAnyError() {
-    
+
     var check = this.formControl!.invalid && this.formControl!.touched;
     return check;
   }
   getMessage() {
-    
+
     if (this.formControl?.errors?.required) {
       return "it a required field"
     }
@@ -41,7 +37,7 @@ export class ErrorValidatorComponent implements OnInit {
       return "must add a valid e-mail"
     }
     if (this.formControl?.errors?.['minlength']) {
-      
+
       let maxLenght = this.formControl.errors.maxlenght.requiredLenght;
       return `must contain less than ${maxLenght} character`
     }

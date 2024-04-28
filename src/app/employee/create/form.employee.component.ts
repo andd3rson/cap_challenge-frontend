@@ -97,7 +97,7 @@ export class FormEmployeeComponent implements OnInit {
   }
 
 
-  // TODO: FIX DEPARTMENT ISN'T LOAD
+ 
   loadIfEdit() {
     if (this.currentAction == "edit") {
       this.route.paramMap.pipe(
