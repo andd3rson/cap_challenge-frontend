@@ -1,0 +1,98 @@
+<app-create-to-form-button [action-name]="'employee/new'" ></app-create-to-form-button>
+
+<div class="form-group form-inline d-flex justify-content-center">
+  <input
+    class="form-control w-75"
+    type="text"
+    name="searchTerm"
+    [(ngModel)]="search"
+  />
+  <button class="btn btn-primary" (click)="refreshEmployee()">Search</button>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Department</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let employee of $employee">
+      <th scope="row">{{ employee.id }}</th>
+      <td>{{ employee.firstName }} {{ employee.lastName }}</td>
+      <td>
+        {{ employee.department?.name }}
+      </td>
+      <td>
+        <div role="group">
+          <button
+            type="button"
+            class="btn btn-outline-primary border-0"
+            [routerLink]="[employee.id, 'edit']"
+          >
+          <i class="fa fa-pencil fa-2" aria-hidden="true"> </i>
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-danger border-0"
+            (click)="open(content, employee)"
+          >
+            X
+          </button>
+         
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="d-flex justify-content-between p-2">
+  <ngb-pagination
+    [collectionSize]="totalPage"
+    [(page)]="page"
+    [pageSize]="pageSize"
+    (pageChange)="nextPage()"
+  >
+  </ngb-pagination>
+
+  <select
+    class="custom-select"
+    style="width: auto"
+    name="pageSize"
+    (change)="itemPerPage()"
+    [(ngModel)]="pageSize"
+  >
+    <option [ngValue]="3">3 items per page</option>
+    <option [ngValue]="5">5 items per page</option>
+    <option [ngValue]="7">7 items per page</option>
+  </select>
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="modal-basic-title">
+      Are you sure about delete this employee "{{ itemToBeDeleted }}" ??
+    </h5>
+  </div>
+
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-primary"
+      (click)="modal.close(true)"
+    >
+      Yes
+    </button>
+    <button
+      type="button"
+      class="btn btn-outline-danger"
+      (click)="modal.close(false)"
+    >
+      No
+    </button>
+  </div>
+</ng-template>
+

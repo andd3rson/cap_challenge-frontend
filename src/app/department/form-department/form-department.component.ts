@@ -6,7 +6,8 @@ import { switchMap } from "rxjs/operators"
 
 import { DepartmentServices } from '../department.service';
 import { Department } from '../department-model';
-import { Location } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-form-department',
   templateUrl: './form-department.component.html'
@@ -20,7 +21,7 @@ export class FormDepartmentComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private departmentServices: DepartmentServices,
-    private location: Location
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -30,12 +31,15 @@ export class FormDepartmentComponent implements OnInit {
   }
 
   onSave() {
+
     if (this.form.valid) {
       if (this.currentAction == 'new') {
         this.onCreate();
       } else {
         this.onUpdate();
       }
+
+    } else {
 
     }
   }
@@ -45,11 +49,10 @@ export class FormDepartmentComponent implements OnInit {
         name: ["", [Validators.required, Validators.maxLength(50)]],
       })
 
+
   }
 
   loadIfEdit() {
-
-
     if (this.currentAction == "edit") {
       this.route.paramMap.pipe(
         switchMap(p => this.departmentServices.getById(Number(p.get("id"))))
@@ -77,28 +80,23 @@ export class FormDepartmentComponent implements OnInit {
     this.departmentServices.create(this.form.value)
       .subscribe(
         success => {
-          this.previewsPage();
-          console.log(success);
+          this.toastr.success(`${this.form.controls['name'].value} has been created`, 'Congrats!!');
+          this.form.reset()
         },
-        error => console.log(error)
+        error => this.toastr.error(`we apologize but, could you pls try it again in a few minutes.`, 'uhhh ....')
       )
   }
 
   onUpdate() {
     this.department = Object.assign(this.department, this.form.value)
-
     this.departmentServices
       .update(this.department, Number(this.department!.id))
       .subscribe(
         success => {
-          this.previewsPage();
-          console.log(success);
+          this.toastr.success(`${this.form.controls['name'].value} has been updated`, 'Congrats!!');
         },
-        error => console.log(error)
+        error => this.toastr.error(`we apologize but, could you pls try it again in a few minutes.`, 'uhhh ....')
       )
   }
 
-  previewsPage() {
-    this.location.back()
-  }
 }
