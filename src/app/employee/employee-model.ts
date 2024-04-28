@@ -18,14 +18,3 @@ export class Department {
     }
 
 } 
-
-export interface EmployeeRequest {
-    id: Number;
-    firstName: String;
-    lastName: String;
-    email: String;
-    salary: Number;
-    birthDate: String;
-    departmentId?: Number
-
-}

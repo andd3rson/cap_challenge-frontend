@@ -1,9 +1,7 @@
-import { Employee, EmployeeRequest } from '../employee-model';
+import { Employee } from '../employee-model';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmployeeServices } from '../employee.service';
-import { Observable } from 'rxjs';
-import { Department } from '../employee-model';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
