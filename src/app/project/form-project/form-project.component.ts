@@ -10,11 +10,35 @@ import { Location } from '@angular/common';
   templateUrl: './form-project.component.html',
   styleUrls: ['./form-project.component.scss']
 })
+
+// {
+//   "name": "busy bees",
+//   "details": "install a login",
+//   "managerName": "Nós mesmo",
+//   "employeesId": [
+//     2, 8
+//   ]
+// }
+
+// {
+// 	"id": 3,
+//   "name": "busy bees",
+//   "details": "install a login",
+//   "managerName": "Nós mesmo",
+//   "employeesId": [
+//     8
+//   ]
+// }
 export class FormProjectComponent implements OnInit {
 
   currentAction: String = "";
   form!: FormGroup;
   project!: Project
+  selectedCar: number = 1;
+  employess = [];
+
+
+
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -39,12 +63,15 @@ export class FormProjectComponent implements OnInit {
     }
   }
   buildForm() {
+    this.loadEmployees()
+
     this.form = this.formBuilder.group(
       {
         name: ["",
           [Validators.required, Validators.maxLength(20)]],
         details: ["",
           [Validators.required, Validators.maxLength(50)]],
+        employeesId: [[],],
         managerName: ["",
           [Validators.required]]
       })
@@ -53,19 +80,22 @@ export class FormProjectComponent implements OnInit {
 
   loadIfEdit() {
     if (this.currentAction == "edit") {
+
       this.route.paramMap.pipe(
         switchMap(p => this.projectServices.getById(Number(p.get("id"))))
       ).subscribe(
-        project => {
+        (project: Project) => {
           this.project = project;
+          project.employeesId = project.employees.map(x => x.id);
           this.form.patchValue(this.project)
+
         }
       )
     }
   }
 
   private setCurrentAction() {
-    console.log(this.route.snapshot.url[0].path);
+   
     if (this.route.snapshot.url[0].path == "new") {
 
       this.currentAction = "new"
@@ -85,9 +115,7 @@ export class FormProjectComponent implements OnInit {
   }
 
   onUpdate() {
-    this.project = Object.assign(this.project, this.form.value)
-    console.log(this.project);
-
+    this.project = Object.assign(this.project, this.form.value)    
     this.projectServices
       .update(this.project, Number(this.project!.id))
       .subscribe(
@@ -98,6 +126,13 @@ export class FormProjectComponent implements OnInit {
       )
   }
 
+  loadEmployees() {
+    this.projectServices.getEmployyes()
+      .subscribe((result: any) => {
+        this.employess = result.items
+      })
+
+  }
 
   previewsPage() {
     this.location.back()

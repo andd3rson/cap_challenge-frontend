@@ -17,6 +17,8 @@ export class ListProjectComponent implements OnInit {
   paginatedProject!: Project[];
   itemToBeDeleted!: String;
 
+  
+
   constructor(private projectServices: ProjectService, private modalService: NgbModal) {
 
   }
@@ -58,6 +60,14 @@ export class ListProjectComponent implements OnInit {
     );
   }
 
+  openInclude(includeContent: any) {
 
+    this.modalService.open(includeContent, { ariaLabelledBy: 'modal-basic-include', }).result.then((result) => {
+
+    }, (reason) => {
+      console.log(reason);
+
+    })
+  }
 }
 
