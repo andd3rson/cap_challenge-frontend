@@ -7,6 +7,7 @@ import { switchMap } from "rxjs/operators"
 import { DepartmentServices } from '../department.service';
 import { Department } from '../department-model';
 import { Location } from '@angular/common';
+
 @Component({
   selector: 'app-form-department',
   templateUrl: './form-department.component.html'

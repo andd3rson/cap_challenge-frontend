@@ -1,4 +1,4 @@
-import { Employee } from './../employee-model';
+import { Employee } from '../employee-model';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmployeeServices } from '../employee.service';
@@ -10,8 +10,7 @@ import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-create',
-  templateUrl: './form.employee.component.html',
-  styleUrls: ['./form.employee.component.scss']
+  templateUrl: './form.employee.component.html'
 })
 export class FormEmployeeComponent implements OnInit {
 

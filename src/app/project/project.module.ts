@@ -15,9 +15,9 @@ import { NgSelectModule } from '@ng-select/ng-select';
     
   ],
   imports: [
+    SharedModule,
     ProjectRoutingModule,
     NgSelectModule,
-    SharedModule,
   ], providers:[]
 })
 export class ProjectModule { }

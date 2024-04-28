@@ -8,27 +8,8 @@ import { Location } from '@angular/common';
 @Component({
   selector: 'app-form-project',
   templateUrl: './form-project.component.html',
-  styleUrls: ['./form-project.component.scss']
+
 })
-
-// {
-//   "name": "busy bees",
-//   "details": "install a login",
-//   "managerName": "Nós mesmo",
-//   "employeesId": [
-//     2, 8
-//   ]
-// }
-
-// {
-// 	"id": 3,
-//   "name": "busy bees",
-//   "details": "install a login",
-//   "managerName": "Nós mesmo",
-//   "employeesId": [
-//     8
-//   ]
-// }
 export class FormProjectComponent implements OnInit {
 
   currentAction: String = "";

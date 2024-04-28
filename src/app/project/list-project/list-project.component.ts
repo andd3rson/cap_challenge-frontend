@@ -5,8 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-list-project',
-  templateUrl: './list-project.component.html',
-  styleUrls: ['./list-project.component.scss']
+  templateUrl: './list-project.component.html'
 })
 export class ListProjectComponent implements OnInit {
 
