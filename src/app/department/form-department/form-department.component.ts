@@ -37,6 +37,8 @@ export class FormDepartmentComponent implements OnInit {
         this.onUpdate();
       }
 
+    }else{
+
     }
   }
   buildForm() {
@@ -45,11 +47,10 @@ export class FormDepartmentComponent implements OnInit {
         name: ["", [Validators.required, Validators.maxLength(50)]],
       })
 
+      
   }
 
   loadIfEdit() {
-
-
     if (this.currentAction == "edit") {
       this.route.paramMap.pipe(
         switchMap(p => this.departmentServices.getById(Number(p.get("id"))))
@@ -84,9 +85,8 @@ export class FormDepartmentComponent implements OnInit {
       )
   }
 
-  onUpdate() {
+  onUpdate() {    
     this.department = Object.assign(this.department, this.form.value)
-
     this.departmentServices
       .update(this.department, Number(this.department!.id))
       .subscribe(

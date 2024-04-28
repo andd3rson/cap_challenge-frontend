@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormEmployeeComponent } from './create/form.employee.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FormEmployeeComponent
   ],
   imports: [
+    SharedModule,
     CommonModule,
     ReactiveFormsModule,
     HttpClientModule,

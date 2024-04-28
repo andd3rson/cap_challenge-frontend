@@ -20,6 +20,7 @@
         id="firstName"
         formControlName="firstName"
       />
+      <app-error-validator [form-control]="form.get('name')"></app-error-validator>
     </div>
 
     <div class="col-md-6">
@@ -30,6 +31,7 @@
         id="lastName"
         formControlName="lastName"
       />
+      <app-error-validator [form-control]="form.get('name')"></app-error-validator>
     </div>
     <div class="col-md-2">
       <label for="birthDate" class="form-label">Birthdate</label>
@@ -40,6 +42,7 @@
         name="d2"
         formControlName="birthDate"
       />
+      <app-error-validator [form-control]="form.get('name')"></app-error-validator>
     </div>
 
     <div class="col-md-6">
@@ -50,6 +53,7 @@
         id="email"
         formControlName="email"
       />
+      <app-error-validator [form-control]="form.get('name')"></app-error-validator>
     </div>
 
     <div class="col-md-3">
@@ -60,6 +64,7 @@
         id="salary"
         formControlName="salary"
       />
+      <app-error-validator [form-control]="form.get('name')"></app-error-validator>
     </div>
 
     <div class="col-md-3">
@@ -69,6 +74,7 @@
           {{ item.name }}
         </option>
       </select>
+      <app-error-validator [form-control]="form.get('name')"></app-error-validator>
     </div>
 
     <div class="col-12">

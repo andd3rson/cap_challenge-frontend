@@ -18,6 +18,7 @@
         id="name"
         formControlName="name"
       />
+      <app-error-validator [form-control]="form.get('name')"></app-error-validator>
     </div>
 
     <div class="col-md-3">
@@ -28,10 +29,10 @@
         id="managerName"
         formControlName="managerName"
       />
+      <app-error-validator [form-control]="form.get('name')"></app-error-validator>
     </div>
     <div class="col-md-6">
       <label for="employees" class="form-label">Employees</label>
-
       <ng-select
         [multiple]="true"
         [items]="employess"
@@ -42,6 +43,7 @@
         formControlName="employeesId"
       >
       </ng-select>
+      <app-error-validator [form-control]="form.get('name')"></app-error-validator>
     </div>
     <div class="col-md-12">
       <label for="details" class="form-label">Details</label>
@@ -52,6 +54,7 @@
         formControlName="details"
       >
       </textarea>
+      <app-error-validator [form-control]="form.get('name')"></app-error-validator>
     </div>
     <div class="col-12">
       <div class="d-flex justify-content-end p-1">

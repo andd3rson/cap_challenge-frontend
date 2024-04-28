@@ -6,6 +6,7 @@ import { FormDepartmentComponent } from './form-department/form-department.compo
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ListDepartmentComponent } from './list-department/list-department.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { ListDepartmentComponent } from './list-department/list-department.compo
     ListDepartmentComponent
   ],
   imports: [
+    SharedModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
