@@ -17,8 +17,6 @@ export class ListProjectComponent implements OnInit {
   paginatedProject!: Project[];
   itemToBeDeleted!: String;
 
-  
-
   constructor(private projectServices: ProjectService, private modalService: NgbModal) {
 
   }
