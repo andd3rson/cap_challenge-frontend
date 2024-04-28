@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { Department } from '../employee-model';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
-import { Location } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-create',
@@ -23,7 +23,7 @@ export class FormEmployeeComponent implements OnInit {
     private formBuilder: FormBuilder,
     private employeeServices: EmployeeServices,
     private route: ActivatedRoute,
-    private location: Location
+    private toastr: ToastrService,
 
   ) {
     this.departments$ = this.employeeServices.getDepartment();
@@ -56,8 +56,6 @@ export class FormEmployeeComponent implements OnInit {
     )
   }
   onSave() {
-    console.log(this.form.value);
-
     if (this.form.valid) {
       if (this.currentAction == 'new') {
         this.onCreate();
@@ -75,9 +73,10 @@ export class FormEmployeeComponent implements OnInit {
     if (this.form.valid) {
       this.employeeServices.create(this.form.value).subscribe(
         success => {
-          console.log(success);
+          this.toastr.success(`${this.form.controls['name'].value} has been created`, 'Congrats!!');
+          this.form.reset()
         },
-        error => console.log(error)
+        error => this.toastr.error(`we apologize but, could you pls try it again in a few minutes.`, 'uhhh ....')
 
       )
     }
@@ -89,9 +88,10 @@ export class FormEmployeeComponent implements OnInit {
       .update(this.employee, Number(this.employee!.id))
       .subscribe(
         success => {
-          console.log(success);
+          this.toastr.success(`${this.form.controls['name'].value} has been updated`, 'Congrats!!');
+          
         },
-        error => console.log(error)
+        error => this.toastr.error(`we apologize but, could you pls try it again in a few minutes.`, 'uhhh ....')
       )
   }
 
@@ -112,9 +112,7 @@ export class FormEmployeeComponent implements OnInit {
     }
   }
 
-  previewsPage() {
-    this.location.back()
-  }
+  
 
   private setCurrentAction() {
     console.log(this.route.snapshot.url[0].path);

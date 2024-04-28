@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProjectService } from '../project.service';
 import { Project } from '../project-model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-list-project',
@@ -16,7 +17,7 @@ export class ListProjectComponent implements OnInit {
   paginatedProject!: Project[];
   itemToBeDeleted!: String;
 
-  constructor(private projectServices: ProjectService, private modalService: NgbModal) {
+  constructor(private projectServices: ProjectService, private toastr: ToastrService, private modalService: NgbModal) {
 
   }
 
@@ -44,7 +45,10 @@ export class ListProjectComponent implements OnInit {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       if (result) {
         this.projectServices.remove(Number(item!.id)).subscribe(
-          success => this.loadProject()
+          success => {
+            this.toastr.success('well done! it was deleted.', 'DONE')
+            this.loadProject()
+          }
         )
       }
     }, (reason) => {

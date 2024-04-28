@@ -4,6 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Department } from '../department-model';
 import { DepartmentServices } from '../department.service';
 import { Observable } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-list-project',
@@ -15,7 +16,9 @@ export class ListDepartmentComponent implements OnInit {
   departments$!: Observable<Department[]>;
   itemToBeDeleted!: String;
 
-  constructor(private departmentServices: DepartmentServices, private modalService: NgbModal) { }
+  constructor(private departmentServices: DepartmentServices,
+    private toastr: ToastrService,
+    private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.refreshProjects();
@@ -32,11 +35,14 @@ export class ListDepartmentComponent implements OnInit {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       if (result) {
         this.departmentServices.remove(Number(item!.id)).subscribe(
-          success => this.refreshProjects()
+          success => {
+            this.toastr.success('well done! it was deleted.', 'DONE')
+            this.refreshProjects()
+          },
+          error => this.toastr.error('well done! it was deleted.')
         )
       }
     }, (reason) => {
-      console.log(reason);
 
     });
   }

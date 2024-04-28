@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeServices } from '../employee.service';
 import { Employee } from '../employee-model';
-import { Observable } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PagedList } from 'src/app/shared/model/PagedList';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-employee',
@@ -17,7 +17,7 @@ export class EmployeeComponent implements OnInit {
   totalPage = 0;
   page = 1;
   pageSize: number = 5;
-  constructor(private employeeServices: EmployeeServices, private modalService: NgbModal) { }
+  constructor(private employeeServices: EmployeeServices, private toastr: ToastrService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.refreshEmployee();
@@ -29,7 +29,10 @@ export class EmployeeComponent implements OnInit {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       if (result) {
         this.employeeServices.remove(Number(item!.id)).subscribe(
-          success => this.refreshEmployee()
+          success => {
+            this.toastr.success('well done! it was deleted.', 'DONE')
+            this.refreshEmployee()
+          }
         )
       }
     }, (reason) => {
@@ -37,8 +40,6 @@ export class EmployeeComponent implements OnInit {
     });
   }
   refreshEmployee() {
-    console.log(this.search);
-    
     this.employeeServices.getWithPaginationAndFilter(this.search, this.page, this.pageSize).subscribe(
       (paged: PagedList<Employee>) => {
         this.page = paged.page;

@@ -5,6 +5,7 @@ import { ProjectService } from '../project.service';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from "rxjs/operators"
 import { Location } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-form-project',
   templateUrl: './form-project.component.html',
@@ -24,7 +25,8 @@ export class FormProjectComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private projectServices: ProjectService,
-    private location: Location
+    
+    private toastr: ToastrService,
   ) { }
 
   ngOnInit(): void {
@@ -89,9 +91,10 @@ export class FormProjectComponent implements OnInit {
     this.projectServices.create(this.form.value)
       .subscribe(
         success => {
-          console.log(success);
+          this.toastr.success(`${this.form.controls['name'].value} has been created`, 'Congrats!!');
+          this.form.reset()
         },
-        error => console.log(error)
+        error => this.toastr.error(`we apologize but, could you pls try it again in a few minutes.`, 'uhhh ....')
       )
   }
 
@@ -101,9 +104,9 @@ export class FormProjectComponent implements OnInit {
       .update(this.project, Number(this.project!.id))
       .subscribe(
         success => {
-          console.log(success);
+          this.toastr.success(`${this.form.controls['name'].value} has been updated`, 'Congrats!!');
         },
-        error => console.log(error)
+        error => this.toastr.error(`we apologize but, could you pls try it again in a few minutes.`, 'uhhh ....')
       )
   }
 
@@ -115,7 +118,4 @@ export class FormProjectComponent implements OnInit {
 
   }
 
-  previewsPage() {
-    this.location.back()
-  }
 }
