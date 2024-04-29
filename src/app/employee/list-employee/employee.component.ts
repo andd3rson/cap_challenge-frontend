@@ -24,7 +24,7 @@ export class EmployeeComponent implements OnInit {
   }
 
   open(content: any, item: Employee) {
-    this.itemToBeDeleted = item.firstName;
+    this.itemToBeDeleted = item.fullname;
 
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       if (result) {

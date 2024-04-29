@@ -1,8 +1,8 @@
 
 export interface Employee {
     id?: Number;
-    firstName: String;
-    lastName: String;
+    fullname: String;
+    cpf: String;
     email: String;
     salary: Number;
     birthDate: String;

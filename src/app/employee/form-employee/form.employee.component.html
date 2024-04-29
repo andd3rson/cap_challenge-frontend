@@ -6,25 +6,25 @@
 <div class="mt-5">
   <form [formGroup]="form" class="row g-3">
     <div class="col-md-4">
-      <label for="firstName" class="form-label">First Name</label>
+      <label for="fullName" class="form-label">Full Name</label>
       <input
-        type="firstName"
+        type="text"
         class="form-control"
-        id="firstName"
-        formControlName="firstName"
+        id="fullname"
+        formControlName="fullname"
       />
-      <app-error-validator [form-control]="form.get('firstName')"></app-error-validator>
+      <app-error-validator [form-control]="form.get('fullname')"></app-error-validator>
     </div>
 
     <div class="col-md-6">
-      <label for="lastName" class="form-label">Last Name</label>
+      <label for="cpf" class="form-label">CPF</label>
       <input
-        type="lastName"
+        type="text"
         class="form-control"
-        id="lastName"
-        formControlName="lastName"
+        id="cpf"
+        formControlName="cpf"
         />
-        <app-error-validator [form-control]="form.get('lastName')"></app-error-validator>
+        <app-error-validator [form-control]="form.get('cpf')"></app-error-validator>
     </div>
     <div class="col-md-2">
       <label for="birthDate" class="form-label">Birthdate</label>

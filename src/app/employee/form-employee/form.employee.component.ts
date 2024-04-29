@@ -43,9 +43,9 @@ export class FormEmployeeComponent implements OnInit {
     this.form = this.formBuilder.group(
       {
        
-        firstName: ["",
+        fullname: ["",
           [Validators.required, Validators.maxLength(20)]],
-        lastName: ["",
+        cpf: ["",
           [Validators.required, Validators.maxLength(50)]],
         email: ["",
           [Validators.email]],
@@ -105,6 +105,8 @@ export class FormEmployeeComponent implements OnInit {
         switchMap(p => this.employeeServices.getById(Number(p.get("id"))))
       ).subscribe(
         (emp: Employee) => {
+          console.log(emp);
+          
           this.employee = emp
           this.employee.birthDate = emp.birthDate.toString().substring(0, 10);
           this.form.patchValue(this.employee)
