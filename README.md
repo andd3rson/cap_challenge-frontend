@@ -1,4 +1,4 @@
-# Employee Management - MVP 
+## Employee Management - Frontend 
 
 Este projeto foi gerado na versão v12.2.18 do Angular e node v14.15.0. Portanto, se deseja testar a aplicação
 voce deve ter configurado o ambiente nas versões corretas.
