@@ -9,5 +9,5 @@ export interface Project {
 
 export interface Employee{
     id: Number;
-    firstName:String;   
+    fullname:String;   
 }

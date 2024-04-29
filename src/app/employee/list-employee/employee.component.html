@@ -22,7 +22,7 @@
   <tbody>
     <tr *ngFor="let employee of $employee">
       <th scope="row">{{ employee.id }}</th>
-      <td>{{ employee.firstName }} {{ employee.lastName }}</td>
+      <td>{{ employee.fullName }}</td>
       <td>
         {{ employee.department?.name }}
       </td>
