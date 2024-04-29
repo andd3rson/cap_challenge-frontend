@@ -1,3 +1,4 @@
+import { NgxMaskModule } from 'ngx-mask';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -9,6 +10,7 @@ import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +21,7 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
 
-
+    NgxMaskModule.forRoot(),
     AppRoutingModule,
     SharedModule
   ],

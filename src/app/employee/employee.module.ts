@@ -1,3 +1,4 @@
+import { NgxMaskModule } from 'ngx-mask';
 import { NgModule } from '@angular/core';
 
 import { EmployeeRoutingModule } from './employee-routing.module';
@@ -16,7 +17,7 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     SharedModule,
     EmployeeRoutingModule,
-    
+    NgxMaskModule.forChild()
   ], 
   providers:[HttpClientModule]
 })
